@@ -13,7 +13,7 @@ export class AuthService {
 
 
   constructor(private router: Router) {
-    this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user') || '{}'));
+    this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user') || null!));
     this.user = this.userSubject.asObservable();
 
   }
@@ -23,8 +23,9 @@ export class AuthService {
   }
 
   login(username: string, password: string) {
+    let user: User;
     if(username === 'dardan' && password === 'dardan'){
-      let user: User =
+      user =
       {
         id: '1',
         username: 'dardan',
@@ -32,6 +33,21 @@ export class AuthService {
         firstName: 'Dardan',
         lastName: 'Alija',
         token: 'token',
+        role: 'admin'
+      }
+      localStorage.setItem('user', JSON.stringify(user));
+      this.userSubject.next(user);
+      return of(user);
+    }else if(username === 'user' && password === 'user'){
+      user =
+      {
+        id: '1',
+        username: 'user',
+        password: 'user',
+        firstName: 'User',
+        lastName: 'User',
+        token: 'token',
+        role: 'user'
       }
       localStorage.setItem('user', JSON.stringify(user));
       this.userSubject.next(user);
