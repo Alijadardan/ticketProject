@@ -1,9 +1,18 @@
-mat-card {
-  max-width: 400px;
-  margin: 2em auto;
-  text-align: center;
-}
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 
-mat-form-field {
-  display: block;
+  &-card {
+    min-width: 40%;
+    margin: 2em auto;
+    text-align: center;
+  }
+
+  &-form {
+    &__field {
+      display: block;
+    }
+  }
 }

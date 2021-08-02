@@ -4,7 +4,10 @@ import { CommonModule } from '@angular/common';
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
 import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldModule  } from '@angular/material/form-field';
+import { MatInputModule  } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -15,7 +18,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     CommonModule,
     LoginRoutingModule,
     MatCardModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatButtonModule
   ]
 })
 export class LoginModule { }
