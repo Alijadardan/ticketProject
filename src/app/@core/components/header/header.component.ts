@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
+import { Role } from '../../enum/role';
 import User from '../../models/user';
 
 @Component({
@@ -15,6 +16,11 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
+  }
+
+  get isAdmin() {
+    return this.user && this.user.role === Role.Admin
   }
 
   logout(){

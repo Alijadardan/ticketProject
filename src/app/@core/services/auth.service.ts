@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
+import { Role } from '../enum/role';
 import User from '../models/user';
 
 @Injectable({
@@ -33,7 +34,7 @@ export class AuthService {
         firstName: 'Dardan',
         lastName: 'Alija',
         token: 'token',
-        role: 'admin'
+        role: Role.Admin
       }
       localStorage.setItem('user', JSON.stringify(user));
       this.userSubject.next(user);
@@ -47,7 +48,7 @@ export class AuthService {
         firstName: 'User',
         lastName: 'User',
         token: 'token',
-        role: 'user'
+        role: Role.User
       }
       localStorage.setItem('user', JSON.stringify(user));
       this.userSubject.next(user);

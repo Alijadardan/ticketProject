@@ -2,13 +2,13 @@
   <span>Welcome {{ user?.firstName | uppercase  }}</span>
   <div class="nav">
     <div class="nav-item">
-      <button mat-raised-button>See All Tickets</button>
+      <a mat-raised-button routerLink="/all-tickets" routerLinkActive="active">See All Tickets</a>
     </div>
-    <div *ngIf="user.role === 'admin'" class="nav-item">
-      <button mat-raised-button>Add New Ticket</button>
+    <div *ngIf="isAdmin" routerLinkActive="active" class="nav-item">
+      <a mat-raised-button routerLink="/new-ticket">Add New Ticket</a>
     </div>
     <div class="nav-item">
-      <button (click)="logout()" mat-raised-button color="warn">LogOut</button>
+      <a (click)="logout()" mat-raised-button color="warn">LogOut</a>
     </div>
   </div>
 </mat-toolbar>

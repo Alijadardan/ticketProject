@@ -1,3 +1,4 @@
+import { Role } from './../enum/role';
 export default interface User {
   id: string;
   username: string;
@@ -5,5 +6,5 @@ export default interface User {
   firstName: string;
   lastName: string;
   token: string;
-  role: string;
+  role: Role;
 }
