@@ -4,5 +4,21 @@
 
   &-item {
     margin: 0 5px;
+
+    a {
+      font-size: 16px;
+      padding: 5px;
+      text-decoration: none;
+      color: black;
+      margin: 0 10px;
+
+      &:hover {
+        border-bottom: 1px solid #f44336;
+      }
+    }
   }
+}
+
+.active {
+  border-bottom: 1px solid #f44336;
 }
