@@ -1,0 +1,48 @@
+.ticket {
+  padding: 60px;
+
+  &-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+
+  &-item {
+    font-size: 17px;
+    margin-top: 30px;
+
+    &__dates {
+      display: flex;
+
+      .ticket-item__label {
+        &:first-child {
+          margin-right: 15px;
+        }
+      }
+    }
+
+    &__label {
+      margin-top: 5px;
+
+      span {
+        color: gray;
+      }
+    }
+
+    &__price {
+      margin-top: 10px;
+      font-size: 18px;
+
+      span {
+        font-size: 20px;
+        font-weight: bold;
+        color: gray;
+      }
+    }
+  }
+
+  &-delete {
+    display: flex;
+    justify-content: flex-end;
+  }
+}

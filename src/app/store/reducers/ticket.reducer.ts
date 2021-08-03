@@ -8,8 +8,8 @@ const initialState: Ticket = {
     inbound: 'Tirana',
     outbound: 'Finland',
     ticket_type: TicketType.VIP,
-    from_date: moment(),
-    to_date: moment().add(1, 'days'),
+    from_date: new Date(),
+    to_date: new Date(),
     seat_number: 23
 }
 

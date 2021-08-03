@@ -1,3 +1,4 @@
+import { MatButtonModule } from '@angular/material/button';
 import { HomeComponent } from './home.component';
 import { SharedModule } from './../../@core/components/shared.module';
 import { NgModule } from '@angular/core';
@@ -7,6 +8,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { ShowAllTicketsComponent } from './components/show-all-tickets/show-all-tickets.component';
 import { CreateNewTicketComponent } from './components/create-new-ticket/create-new-ticket.component';
 import { DataChartsComponent } from './components/data-charts/data-charts.component';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { DataChartsComponent } from './components/data-charts/data-charts.compon
   imports: [
     CommonModule,
     HomeRoutingModule,
-    SharedModule
+    SharedModule,
+    MatCardModule,
+    MatButtonModule
   ]
 })
 export class HomeModule { }
