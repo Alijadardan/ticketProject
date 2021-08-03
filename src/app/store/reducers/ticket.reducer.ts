@@ -1,4 +1,4 @@
-import { TicketType } from '../../@core/models/ticket-type';
+import { TicketType } from '../../@core/enum/types';
 import Ticket from 'src/app/@core/models/ticket';
 import * as moment from 'moment';
 import * as TicketActions from '../actions/ticket.actions';
@@ -10,7 +10,8 @@ const initialState: Ticket = {
     ticket_type: TicketType.VIP,
     from_date: new Date(),
     to_date: new Date(),
-    seat_number: 23
+    seat_number: 23,
+    price: 100
 }
 
 export function TicketReducer(state: Ticket[] = [initialState], action: TicketActions.Actions){

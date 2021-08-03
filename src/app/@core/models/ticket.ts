@@ -1,4 +1,5 @@
-import { TicketType } from './ticket-type';
+import { TicketType } from './../enum/types';
+
 export default interface Ticket {
     id: number;
     inbound: string;
@@ -7,4 +8,5 @@ export default interface Ticket {
     from_date: Date;
     to_date: Date;
     seat_number: number;
+    price: number;
 }
