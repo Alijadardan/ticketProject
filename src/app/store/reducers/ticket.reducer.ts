@@ -19,7 +19,7 @@ export function TicketReducer(state: Ticket[] = [initialState], action: TicketAc
       return [...state, action.payload];
     case TicketActions.REMOVE_TICKET:
       const newState = [...state];
-      newState.splice(action.payload, 1);
+      newState.splice(newState.findIndex(item => item.id === action.payload), 1);
       return newState;
     default:
       return state

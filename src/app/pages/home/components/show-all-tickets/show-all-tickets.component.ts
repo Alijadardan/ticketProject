@@ -5,9 +5,8 @@ import { Observable } from 'rxjs';
 import Ticket from 'src/app/@core/models/ticket';
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { map } from 'rxjs/operators';
-import * as moment from 'moment';
 import User from 'src/app/@core/models/user';
+import * as TicketActions from '../../../../store/actions/ticket.actions';
 
 @Component({
   selector: 'app-show-all-tickets',
@@ -31,8 +30,8 @@ export class ShowAllTicketsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  deleteTicket() {
-
+  deleteTicket(id: number) {
+    this.store.dispatch(new TicketActions.RemoveTicket(id));
   }
 
 }
