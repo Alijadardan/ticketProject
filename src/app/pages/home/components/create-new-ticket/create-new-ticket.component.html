@@ -22,15 +22,41 @@
             Please provide a outbound
           </mat-error>
         </mat-form-field>
-        <!-- <mat-form-field class="full-width-input new-form__field">
+        <mat-form-field class="full-width-input new-form__field">
           <mat-label>Ticket Type</mat-label>
-          <mat-select>
-            {{ ticketTypes | json }}
-            <mat-option *ngFor="let ticketType of ticketTypes | keyvalue" [value]="ticketType">
+          <mat-select formControlName="ticket_type">
+            <mat-option *ngFor="let ticketType of ticketTypes | keyvalue" [value]="ticketType.value">
               {{ticketType.value}}
             </mat-option>
           </mat-select>
-        </mat-form-field> -->
+        </mat-form-field>
+        <mat-form-field class="full-width-input new-form__field" appearance="fill">
+          <mat-label>Choose a from date</mat-label>
+          <input formControlName="from_date" matInput [matDatepicker]="picker1">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="full-width-input new-form__field" appearance="fill">
+          <mat-label>Choose a to date</mat-label>
+          <input formControlName="to_date" matInput [matDatepicker]="picker2">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="half-width-input new-form__field">
+          <input type="number" min="0" matInput placeholder="Seat Number" formControlName="seat_number" required>
+          <mat-error>
+            Please provide a seat number
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="half-width-input new-form__field">
+          <input type="number" matInput placeholder="Price" formControlName="price" required>
+          <mat-error *ngIf="tickets.controls[i].get('price')?.errors?.required">
+            Please provide a price
+          </mat-error>
+          <mat-error *ngIf="tickets.controls[i].get('price')?.errors?.min">
+            Price should be more than 0
+          </mat-error>
+        </mat-form-field>
        </ng-container>
       </div>
     </ng-container>

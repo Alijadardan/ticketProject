@@ -1,4 +1,4 @@
-import { TicketType } from './../../../../@core/models/ticket-type';
+import { TicketType } from './../../../../@core/enum/types';
 import { AppState } from './../../../../app.state';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -13,7 +13,7 @@ export class CreateNewTicketComponent implements OnInit {
 
   ticketsForm!: FormGroup;
   tickets!: FormArray;
-  // ticketTypes = TicketType;
+  ticketTypes = TicketType;
 
   constructor(private fb: FormBuilder,
     private store: Store<AppState>) { }
@@ -33,6 +33,7 @@ export class CreateNewTicketComponent implements OnInit {
 
     this.tickets = this.ticketsForm.get('tickets') as FormArray;
     this.tickets.push(this.createItemTicket());
+    console.log(this.tickets.controls[0].get('price')?.errors?.required)
   }
 
   createItemTicket() {
@@ -40,10 +41,11 @@ export class CreateNewTicketComponent implements OnInit {
       id: [null, Validators.required],
       inbound: ['', Validators.required],
       outbound: ['', Validators.required],
-      ticket_type: [TicketType.MEDIUM, Validators.required],
+      ticket_type: [null, Validators.required],
       from_date: ['', Validators.required],
       to_date: ['', Validators.required],
-      seat_number: [null, Validators.required]
+      seat_number: [null, Validators.required],
+      price: [null, [Validators.required, Validators.min(0)]]
     })
   }
 
