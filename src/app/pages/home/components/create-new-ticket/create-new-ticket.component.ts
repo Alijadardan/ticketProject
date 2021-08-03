@@ -33,7 +33,6 @@ export class CreateNewTicketComponent implements OnInit {
 
     this.tickets = this.ticketsForm.get('tickets') as FormArray;
     this.tickets.push(this.createItemTicket());
-    console.log(this.tickets.controls[0].get('price')?.errors?.required)
   }
 
   createItemTicket() {
@@ -47,6 +46,11 @@ export class CreateNewTicketComponent implements OnInit {
       seat_number: [null, Validators.required],
       price: [null, [Validators.required, Validators.min(0)]]
     })
+  }
+
+  addNewFormItem(e: any) {
+    e.preventDefault();
+    this.tickets.push(this.createItemTicket());
   }
 
 }

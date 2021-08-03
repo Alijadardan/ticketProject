@@ -15,6 +15,14 @@
     margin-bottom: 15px;
   }
 
+  &-formarray {
+    &__item {
+      margin: 15px 0;
+      border: 2px solid gray;
+      padding: 15px;
+    }
+  } 
+
   &-submit {
     display: flex;
     margin: auto;

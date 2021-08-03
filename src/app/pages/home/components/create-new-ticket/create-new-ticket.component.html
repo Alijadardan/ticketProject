@@ -1,8 +1,11 @@
 <div class="new">
   <form class="new-form" [formGroup]="ticketsForm" (submit)="onSubmit()">
-    <div class="new-title">Add New Tickets</div>
+    <div class="d-flex justify-between">
+      <div class="new-title">Add New Tickets</div>
+      <button (click)="addNewFormItem($event)" mat-raised-button color="primary">+</button>
+    </div>
     <ng-container formArrayName="tickets">
-      <div *ngFor="let ticket of tickets.controls; index as i">
+      <div class="new-formarray__item" *ngFor="let ticket of tickets.controls; index as i">
        <ng-container [formGroupName]="i">
         <mat-form-field class="full-width-input new-form__field">
           <input matInput placeholder="Id" formControlName="id" required>
