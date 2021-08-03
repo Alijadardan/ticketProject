@@ -1,0 +1,29 @@
+.new {
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+
+  &-form {
+    width: 50%;
+    padding: 30px;
+    background: white;
+  }
+
+  &-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  &-submit {
+    display: flex;
+    margin: auto;
+  }
+}
+
+.full-width-input {
+  width: 100%;
+}
+.half-width-input {
+  width: 50%;
+}

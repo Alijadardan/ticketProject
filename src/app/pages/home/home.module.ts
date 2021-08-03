@@ -1,3 +1,4 @@
+import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { HomeComponent } from './home.component';
 import { SharedModule } from './../../@core/components/shared.module';
@@ -9,6 +10,9 @@ import { ShowAllTicketsComponent } from './components/show-all-tickets/show-all-
 import { CreateNewTicketComponent } from './components/create-new-ticket/create-new-ticket.component';
 import { DataChartsComponent } from './components/data-charts/data-charts.component';
 import { MatCardModule } from '@angular/material/card';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -23,7 +27,12 @@ import { MatCardModule } from '@angular/material/card';
     HomeRoutingModule,
     SharedModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    FormsModule,
+    MatInputModule,
+    MatSelectModule
   ]
 })
 export class HomeModule { }

@@ -1,1 +1,39 @@
-<p>create-new-ticket works!</p>
+<div class="new">
+  <form class="new-form" [formGroup]="ticketsForm" (submit)="onSubmit()">
+    <div class="new-title">Add New Tickets</div>
+    <ng-container formArrayName="tickets">
+      <div *ngFor="let ticket of tickets.controls; index as i">
+       <ng-container [formGroupName]="i">
+        <mat-form-field class="full-width-input new-form__field">
+          <input matInput placeholder="Id" formControlName="id" required>
+          <mat-error>
+            Please provide a id
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="half-width-input new-form__field">
+          <input matInput placeholder="Inbound" formControlName="inbound" required>
+          <mat-error>
+            Please provide a inbound
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="half-width-input new-form__field">
+          <input matInput placeholder="Outbound" formControlName="outbound" required>
+          <mat-error>
+            Please provide a outbound
+          </mat-error>
+        </mat-form-field>
+        <!-- <mat-form-field class="full-width-input new-form__field">
+          <mat-label>Ticket Type</mat-label>
+          <mat-select>
+            {{ ticketTypes | json }}
+            <mat-option *ngFor="let ticketType of ticketTypes | keyvalue" [value]="ticketType">
+              {{ticketType.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field> -->
+       </ng-container>
+      </div>
+    </ng-container>
+    <button class="new-submit" mat-raised-button color="primary" type="submit">Submit</button>
+  </form>
+</div>

@@ -7,4 +7,7 @@ export class TicketType {
     private constructor(private readonly id: number, public readonly type: string, public readonly price: number) {
     }
 
+    getTicketTypes() {
+      return TicketType.VIP
+    }
 }
