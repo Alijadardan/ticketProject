@@ -1,23 +1,25 @@
-import { TicketType } from '../../@core/enum/types';
+import { UUID } from 'angular2-uuid';
 import Ticket from 'src/app/@core/models/ticket';
-import * as moment from 'moment';
 import * as TicketActions from '../actions/ticket.actions';
 
 const initialState: Ticket = {
-    id: 1,
+    id: UUID.UUID(),
     inbound: 'Tirana',
     outbound: 'Finland',
-    ticket_type: TicketType.VIP,
+    ticket_type: {
+      id: 1,
+      type: 'VIP',
+      price: 100
+    },
     from_date: new Date(),
     to_date: new Date(),
-    seat_number: 23,
-    price: 100
+    seat_number: 23
 }
 
 export function TicketReducer(state: Ticket[] = [initialState], action: TicketActions.Actions){
   switch (action.type) {
     case TicketActions.ADD_TICKET:
-      return [...state, action.payload];
+      return state.concat(action.payload);
     case TicketActions.REMOVE_TICKET:
       const newState = [...state];
       newState.splice(newState.findIndex(item => item.id === action.payload), 1);

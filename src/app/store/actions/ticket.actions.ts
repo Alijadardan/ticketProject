@@ -15,7 +15,7 @@ export class AddTicket implements Action {
 export class RemoveTicket implements Action {
   readonly type = REMOVE_TICKET
 
-  constructor(public payload: number){
+  constructor(public payload: string){
 
   }
 }

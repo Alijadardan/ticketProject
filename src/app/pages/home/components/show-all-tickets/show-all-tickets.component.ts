@@ -30,7 +30,7 @@ export class ShowAllTicketsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  deleteTicket(id: number) {
+  deleteTicket(id: string) {
     this.store.dispatch(new TicketActions.RemoveTicket(id));
   }
 

@@ -1,13 +1,23 @@
-export class TicketType {
-    static readonly VIP  = new TicketType(1, 'VIP', 50);
-    static readonly MEDIUM = new TicketType(2, 'MEDIUM', 25);
-    static readonly ECONOMY  = new TicketType(3, 'ECONOMY', 10);
-
-    // private to disallow creating other instances of this type
-    private constructor(private readonly id: number, public readonly type: string, public readonly price: number) {
-    }
-
-    getTicketTypes() {
-      return TicketType.VIP
-    }
+export default interface TicketType {
+  id: number;
+  type: string;
+  price: number;
 }
+
+export const ticketTypes: TicketType[] = [
+  {
+    id: 1,
+    type: 'VIP',
+    price: 100
+  },
+  {
+    id: 2,
+    type: 'MEDIUM',
+    price: 50
+  },
+  {
+    id: 3,
+    type: 'ECONOMY',
+    price: 25
+  }
+]
