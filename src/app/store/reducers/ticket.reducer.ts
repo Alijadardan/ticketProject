@@ -19,11 +19,17 @@ const initialState: Ticket = {
 export function TicketReducer(state: Ticket[] = [initialState], action: TicketActions.Actions){
   switch (action.type) {
     case TicketActions.ADD_TICKET:
-      return state.concat(action.payload);
+     const addTicketState = state.concat(action.payload);
+      localStorage.setItem("STATE", JSON.stringify(addTicketState));
+      return addTicketState;
     case TicketActions.REMOVE_TICKET:
       const newState = [...state];
       newState.splice(newState.findIndex(item => item.id === action.payload), 1);
+      localStorage.setItem("STATE", JSON.stringify(newState));
       return newState;
+    case TicketActions.UPDATE_TICKETS:
+      const localStorageState = action.payload
+      return localStorageState;
     default:
       return state
   }

@@ -49,7 +49,7 @@
             </mat-error>
           </mat-form-field>
           <mat-form-field class="half-width-input new-form__field">
-            <input [disabled]="true" type="number" matInput placeholder="Price" formControlName="price" required>
+            <input type="number" matInput placeholder="Price" formControlName="price" required>
             <mat-error *ngIf="tickets.controls[i].get('price')?.errors?.required">
               Please provide a price
             </mat-error>

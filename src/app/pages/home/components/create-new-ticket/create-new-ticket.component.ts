@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import TicketType, { ticketTypes } from './../../../../@core/models/ticket-type';
 import { AppState } from './../../../../app.state';
 import { Component, OnInit } from '@angular/core';
@@ -18,7 +19,8 @@ export class CreateNewTicketComponent implements OnInit {
   ticketTypes = ticketTypes;
 
   constructor(private fb: FormBuilder,
-    private store: Store<AppState>) { }
+    private store: Store<AppState>,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.buildForm();
@@ -30,7 +32,8 @@ export class CreateNewTicketComponent implements OnInit {
       return;
     }
 
-    this.store.dispatch(new TicketActions.AddTicket(this.ticketsForm.value.tickets))
+    this.store.dispatch(new TicketActions.AddTicket(this.ticketsForm.value.tickets));
+    this.router.navigate(['/all-tickets']);
   }
 
   buildForm() {

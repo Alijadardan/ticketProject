@@ -3,6 +3,7 @@ import { Action } from "@ngrx/store";
 
 export const ADD_TICKET = '[TICKET] Add'
 export const REMOVE_TICKET = '[TICKET] Remove'
+export const UPDATE_TICKETS = '[TICKET] Update'
 
 export class AddTicket implements Action {
   readonly type = ADD_TICKET
@@ -20,5 +21,13 @@ export class RemoveTicket implements Action {
   }
 }
 
+export class UpdateTickets implements Action {
+  readonly type = UPDATE_TICKETS
 
-export type Actions = AddTicket | RemoveTicket
+  constructor(public payload: Ticket[]){
+
+  }
+}
+
+
+export type Actions = AddTicket | RemoveTicket | UpdateTickets
