@@ -27,7 +27,6 @@ export class CreateNewTicketComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.ticketsForm.value)
     if(!this.ticketsForm.valid){
       return;
     }
@@ -64,7 +63,6 @@ export class CreateNewTicketComponent implements OnInit {
   }
 
   ticketTypeChange(type: TicketType, i:number) {
-    console.log(type);
     this.tickets.controls[i].get('price')?.setValue(type.price);
   }
 

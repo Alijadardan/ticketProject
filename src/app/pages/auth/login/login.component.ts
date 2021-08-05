@@ -25,12 +25,10 @@ export class LoginComponent implements OnInit {
     if (this.form.valid) {
       this.authService.login(this.form.value.username, this.form.value.password).subscribe({
         next: (data)=> {
-          console.log(data);
           this.router.navigate([''])
         },
         error: (error) => {
           this.loginInvalid = true;
-          console.log(error);
         }
       });
     }

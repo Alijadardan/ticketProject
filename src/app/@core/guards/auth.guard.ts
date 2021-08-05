@@ -17,9 +17,7 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       const user = this.authService.userValue;
-      console.log(user);
       if (user) {
-          console.log(route)
           // check if route is restricted by role
           if (route.data.roles && route.data.roles.indexOf(user.role) === -1) {
             // role not authorised so redirect to home page

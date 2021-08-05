@@ -40,7 +40,6 @@ export class ShowAllTicketsComponent implements OnInit {
     this.tickets.subscribe((data: Ticket[]) => {
       this.last_page_number = Math.ceil(data.length/10);
       this.results = data.slice(page_number * page_size, page_number * page_size + page_size);
-      console.log(this.results);
     });
   }
 
