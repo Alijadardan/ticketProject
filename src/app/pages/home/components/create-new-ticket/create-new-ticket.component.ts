@@ -66,7 +66,8 @@ export class CreateNewTicketComponent implements OnInit {
       seat_number: [null, Validators.required],
       price: [{ value: null, disabled: true }, [Validators.required, Validators.min(0)]]
     }, {
-      validator: [SameInboundOutbound('inbound', 'outbound'), toDateBeforeFromDate('from_date', 'to_date'), validateSeatNumber('seat_number', 'inbound', 'outbound', 'from_date', this.store.select('ticket'))]
+      validators: [SameInboundOutbound('inbound', 'outbound'), toDateBeforeFromDate('from_date', 'to_date'), validateSeatNumber('seat_number', 'inbound', 'outbound', 'from_date', this.store.select('ticket'))],
+      updateOn: 'submit'
     })
   }
 
@@ -77,10 +78,6 @@ export class CreateNewTicketComponent implements OnInit {
 
   ticketTypeChange(type: TicketType, i:number) {
     this.tickets.controls[i].get('price')?.setValue(type.price);
-  }
-
-  get ticketPrice() {
-    return
   }
 
 }
