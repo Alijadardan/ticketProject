@@ -32,18 +32,26 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-        <mat-form-field class="full-width-input new-form__field" appearance="fill">
-          <mat-label>Choose a from date</mat-label>
-          <input formControlName="from_date" matInput [matDatepicker]="picker1">
-          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-          <mat-datepicker #picker1></mat-datepicker>
-        </mat-form-field>
-        <mat-form-field class="full-width-input new-form__field" appearance="fill">
-          <mat-label>Choose a to date</mat-label>
-          <input formControlName="to_date" matInput [matDatepicker]="picker2">
-          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-          <mat-datepicker #picker2></mat-datepicker>
-        </mat-form-field>
+        <div class="d-flex justify-between">
+          <mat-form-field class="half-width-input new-form__field" appearance="fill">
+            <mat-label>Choose a from date</mat-label>
+            <input [min]="minDate" formControlName="from_date" matInput [matDatepicker]="picker1">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="half-width-input new-form__field" appearance="fill">
+            <mat-label>Choose a to date</mat-label>
+            <input formControlName="to_date" matInput [matDatepicker]="picker2">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+            <mat-error *ngIf="tickets.controls[i].get('to_date')?.errors?.required">
+              Please provide a To Date
+            </mat-error>
+            <mat-error *ngIf="tickets.controls[i].get('to_date')?.errors?.dateNotValid">
+              To Date must be after From Date
+            </mat-error>
+          </mat-form-field>
+        </div>
         <div class="d-flex justify-between">
           <mat-form-field class="half-width-input new-form__field">
             <input type="number" min="0" matInput placeholder="Seat Number" formControlName="seat_number" required>

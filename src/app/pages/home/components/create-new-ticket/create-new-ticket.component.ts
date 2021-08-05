@@ -8,6 +8,8 @@ import { Store } from '@ngrx/store';
 import { UUID } from 'angular2-uuid';
 import * as TicketActions from '../../../../store/actions/ticket.actions';
 import { SameInboundOutbound } from 'src/app/@core/validators/validate-inbound-outbound';
+import { toDateBeforeFromDate } from 'src/app/@core/validators/validate-date';
+import * as moment from 'moment'
 
 @Component({
   selector: 'app-create-new-ticket',
@@ -20,6 +22,7 @@ export class CreateNewTicketComponent implements OnInit {
   tickets!: FormArray;
   ticketTypes = ticketTypes;
   ticketsState!: Ticket[];
+  minDate: Date = new Date();
 
   constructor(private fb: FormBuilder,
     private store: Store<AppState>,
@@ -72,7 +75,7 @@ export class CreateNewTicketComponent implements OnInit {
       seat_number: [null, Validators.required],
       price: [{ value: null, disabled: true }, [Validators.required, Validators.min(0)]]
     }, {
-      validator: SameInboundOutbound('inbound', 'outbound')
+      validator: [SameInboundOutbound('inbound', 'outbound'), toDateBeforeFromDate('from_date', 'to_date')]
     })
   }
 
