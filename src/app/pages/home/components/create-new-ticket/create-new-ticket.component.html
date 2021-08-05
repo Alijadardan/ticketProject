@@ -16,7 +16,10 @@
           </mat-form-field>
           <mat-form-field class="half-width-input new-form__field">
             <input matInput placeholder="Outbound" formControlName="outbound" required>
-            <mat-error>
+            <mat-error *ngIf="tickets.controls[i].get('outbound')?.errors?.sameValidator">
+              Outbound can not be the same as inbound
+            </mat-error>
+            <mat-error *ngIf="tickets.controls[i].get('outbound')?.errors?.required">
               Please provide a outbound
             </mat-error>
           </mat-form-field>

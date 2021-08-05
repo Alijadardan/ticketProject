@@ -1,3 +1,4 @@
+import Ticket from 'src/app/@core/models/ticket';
 import { Router } from '@angular/router';
 import TicketType, { ticketTypes } from './../../../../@core/models/ticket-type';
 import { AppState } from './../../../../app.state';
@@ -6,6 +7,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { UUID } from 'angular2-uuid';
 import * as TicketActions from '../../../../store/actions/ticket.actions';
+import { SameInboundOutbound } from 'src/app/@core/validators/validate-inbound-outbound';
 
 @Component({
   selector: 'app-create-new-ticket',
@@ -17,6 +19,7 @@ export class CreateNewTicketComponent implements OnInit {
   ticketsForm!: FormGroup;
   tickets!: FormArray;
   ticketTypes = ticketTypes;
+  ticketsState!: Ticket[];
 
   constructor(private fb: FormBuilder,
     private store: Store<AppState>,
@@ -24,13 +27,27 @@ export class CreateNewTicketComponent implements OnInit {
 
   ngOnInit(): void {
     this.buildForm();
+    this.store.select('ticket').subscribe(data => {
+      this.ticketsState = data;
+    })
   }
 
   onSubmit() {
+    console.log(this.ticketsForm);
     if(!this.ticketsForm.valid){
       return;
     }
 
+    this.ticketsForm.value.tickets.forEach((element: Ticket) => {
+      this.ticketsState.forEach(ticket => {
+        console.log(element, ticket);
+        if(element.inbound == ticket.inbound && element.outbound == ticket.outbound && element.from_date == ticket.from_date && element.seat_number == ticket.seat_number){
+          console.log("Duplicate");
+        }else {
+          console.log("NoDuplicakte");
+        }
+      });
+    });
     this.store.dispatch(new TicketActions.AddTicket(this.ticketsForm.value.tickets));
     this.router.navigate(['/all-tickets']);
   }
@@ -54,6 +71,8 @@ export class CreateNewTicketComponent implements OnInit {
       to_date: ['', Validators.required],
       seat_number: [null, Validators.required],
       price: [{ value: null, disabled: true }, [Validators.required, Validators.min(0)]]
+    }, {
+      validator: SameInboundOutbound('inbound', 'outbound')
     })
   }
 
