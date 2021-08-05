@@ -6,6 +6,7 @@
     </div>
     <ng-container formArrayName="tickets">
       <div class="new-formarray__item" *ngFor="let ticket of tickets.controls; index as i">
+        <button *ngIf="i!==0" class="new-formarray__removeBtn" (click)="removeNewFormItem(i)" mat-raised-button color="primary">-</button>
        <ng-container [formGroupName]="i">
         <div class="d-flex justify-between">
           <mat-form-field class="half-width-input new-form__field">

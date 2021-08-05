@@ -67,13 +67,16 @@ export class CreateNewTicketComponent implements OnInit {
       price: [{ value: null, disabled: true }, [Validators.required, Validators.min(0)]]
     }, {
       validators: [SameInboundOutbound('inbound', 'outbound'), toDateBeforeFromDate('from_date', 'to_date'), validateSeatNumber('seat_number', 'inbound', 'outbound', 'from_date', this.store.select('ticket'))],
-      updateOn: 'submit'
     })
   }
 
   addNewFormItem(e: any) {
     e.preventDefault();
     this.tickets.push(this.createItemTicket());
+  }
+
+  removeNewFormItem(i: number){
+    this.tickets.removeAt(i);
   }
 
   ticketTypeChange(type: TicketType, i:number) {
