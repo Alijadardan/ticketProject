@@ -10,6 +10,7 @@ import * as TicketActions from '../../../../store/actions/ticket.actions';
 import { SameInboundOutbound } from 'src/app/@core/validators/validate-inbound-outbound';
 import { toDateBeforeFromDate } from 'src/app/@core/validators/validate-date';
 import * as moment from 'moment'
+import { validateSeatNumber } from 'src/app/@core/validators/validate-seat_number';
 
 @Component({
   selector: 'app-create-new-ticket',
@@ -41,16 +42,6 @@ export class CreateNewTicketComponent implements OnInit {
       return;
     }
 
-    this.ticketsForm.value.tickets.forEach((element: Ticket) => {
-      this.ticketsState.forEach(ticket => {
-        console.log(element, ticket);
-        if(element.inbound == ticket.inbound && element.outbound == ticket.outbound && element.from_date == ticket.from_date && element.seat_number == ticket.seat_number){
-          console.log("Duplicate");
-        }else {
-          console.log("NoDuplicakte");
-        }
-      });
-    });
     this.store.dispatch(new TicketActions.AddTicket(this.ticketsForm.value.tickets));
     this.router.navigate(['/all-tickets']);
   }
@@ -75,7 +66,7 @@ export class CreateNewTicketComponent implements OnInit {
       seat_number: [null, Validators.required],
       price: [{ value: null, disabled: true }, [Validators.required, Validators.min(0)]]
     }, {
-      validator: [SameInboundOutbound('inbound', 'outbound'), toDateBeforeFromDate('from_date', 'to_date')]
+      validator: [SameInboundOutbound('inbound', 'outbound'), toDateBeforeFromDate('from_date', 'to_date'), validateSeatNumber('seat_number', 'inbound', 'outbound', 'from_date', this.store.select('ticket'))]
     })
   }
 

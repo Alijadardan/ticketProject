@@ -55,8 +55,11 @@
         <div class="d-flex justify-between">
           <mat-form-field class="half-width-input new-form__field">
             <input type="number" min="0" matInput placeholder="Seat Number" formControlName="seat_number" required>
-            <mat-error>
+            <mat-error *ngIf="tickets.controls[i].get('seat_number')?.errors?.required">
               Please provide a seat number
+            </mat-error>
+            <mat-error *ngIf="tickets.controls[i].get('seat_number')?.errors?.seatNumberNotValid">
+              Seat Number is Reserved select another one
             </mat-error>
           </mat-form-field>
           <mat-form-field class="half-width-input new-form__field">
