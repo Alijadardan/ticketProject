@@ -8,7 +8,7 @@ const initialState: Ticket[] = MOCK_DATA;
 export function TicketReducer(state: Ticket[] = initialState, action: TicketActions.Actions){
   switch (action.type) {
     case TicketActions.ADD_TICKET:
-     const addTicketState = state.concat(action.payload);
+      const addTicketState = [...action.payload, ...state];
       localStorage.setItem("STATE", JSON.stringify(addTicketState));
       return addTicketState;
     case TicketActions.REMOVE_TICKET:

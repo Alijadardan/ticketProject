@@ -8,7 +8,7 @@ export const UPDATE_TICKETS = '[TICKET] Update'
 export class AddTicket implements Action {
   readonly type = ADD_TICKET
 
-  constructor(public payload: Ticket){
+  constructor(public payload: Ticket[]){
 
   }
 }
