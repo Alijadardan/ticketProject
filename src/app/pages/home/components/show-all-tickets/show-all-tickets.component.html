@@ -1,6 +1,11 @@
+
 <div class="ticket">
+  <div class="ticket-search">
+    <app-search-tickets (newItemEvent)="filterData($event)"></app-search-tickets>
+  </div>
   <div class="ticket-title d-flex justify-between">
     <span>See All Tickets</span>
+    <mat-spinner *ngIf="loading"></mat-spinner>
     <div class="pagination">
       <button [disabled]="this.page_number == 0" class="pagination-btn" (click)="goToFirstPage()" mat-raised-button color="primary"> << </button>
       <button [disabled]="this.page_number == 0" class="pagination-btn" (click)="changePreviusPage()" mat-raised-button color="primary"> < </button>

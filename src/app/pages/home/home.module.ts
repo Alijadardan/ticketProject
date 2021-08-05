@@ -15,6 +15,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { SearchTicketsComponent } from './components/search-tickets/search-tickets.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -22,7 +24,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     HomeComponent,
     ShowAllTicketsComponent,
     CreateNewTicketComponent,
-    DataChartsComponent
+    DataChartsComponent,
+    SearchTicketsComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +39,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatInputModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     MatDatepickerModule

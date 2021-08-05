@@ -22,6 +22,7 @@ export class ShowAllTicketsComponent implements OnInit {
   page_number: number = 0;
   page_size: number = 10;
   last_page_number: number = 0;
+  loading: boolean = false;
 
   constructor(private store: Store<AppState>, private authService: AuthService) {
     this.tickets = this.store.select('ticket');
@@ -33,6 +34,13 @@ export class ShowAllTicketsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.sliceData(this.page_number, this.page_size);
+  }
+
+  filterData(data: Observable<Ticket[]>) {
+    this.page_number = 0;
+    this.page_size = 10;
+    this.tickets = data;
     this.sliceData(this.page_number, this.page_size);
   }
 

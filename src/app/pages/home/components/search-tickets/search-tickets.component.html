@@ -1,0 +1,42 @@
+<div class="search">
+    <form class="search-form" [formGroup]="searchForm" (submit)="onSubmit()">
+        <div class="search-title">Search Form</div>
+        <div class="search-formarray__item">
+            <div class="d-flex justify-between">
+            <mat-form-field class="half-width-input search-form__field">
+                <input matInput placeholder="Inbound" formControlName="inbound">
+            </mat-form-field>
+            <mat-form-field class="half-width-input search-form__field">
+                <input matInput placeholder="Outbound" formControlName="outbound">
+            </mat-form-field>
+            </div>
+            <mat-form-field class="full-width-input search-form__field">
+            <mat-label>Ticket Type</mat-label>
+            <mat-select formControlName="ticket_type">
+                <mat-option [value]="">
+                    Select Type
+                </mat-option>
+                <mat-option *ngFor="let ticketType of ticketTypes" [value]="ticketType">
+                    {{ticketType.type}}
+                </mat-option>
+            </mat-select>
+            </mat-form-field>
+            <div class="d-flex justify-between">
+            <mat-form-field class="half-width-input search-form__field" appearance="fill">
+                <mat-label>Choose a from date</mat-label>
+                <input formControlName="from_date" matInput [matDatepicker]="picker1">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class="half-width-input search-form__field" appearance="fill">
+                <mat-label>Choose a to date</mat-label>
+                <input formControlName="to_date" matInput [matDatepicker]="picker2">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+            </div>
+        </div>
+        <button class="search-submit" mat-raised-button color="primary" type="submit">Search</button>
+    </form>
+</div>
+  
