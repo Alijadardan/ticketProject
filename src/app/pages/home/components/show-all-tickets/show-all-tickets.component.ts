@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { AuthService } from './../../../../@core/services/auth.service';
 import { Role } from './../../../../@core/enum/role';
 import { AppState } from './../../../../app.state';
@@ -17,6 +18,10 @@ export class ShowAllTicketsComponent implements OnInit {
 
   tickets: Observable<Ticket[]>;
   user!: User;
+  results: Ticket[] = [];
+  page_number: number = 0;
+  page_size: number = 10;
+  last_page_number: number = 0;
 
   constructor(private store: Store<AppState>, private authService: AuthService) {
     this.tickets = this.store.select('ticket');
@@ -28,10 +33,43 @@ export class ShowAllTicketsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.sliceData(this.page_number, this.page_size);
+  }
+
+  sliceData(page_number: number, page_size: number){
+    this.tickets.subscribe((data: Ticket[]) => {
+      this.last_page_number = Math.ceil(data.length/10);
+      this.results = data.slice(page_number * page_size, page_number * page_size + page_size);
+      console.log(this.results);
+    });
   }
 
   deleteTicket(id: string) {
     this.store.dispatch(new TicketActions.RemoveTicket(id));
+  }
+
+  changeNextPage(){
+    if(this.last_page_number !== this.page_number) {
+      this.page_number += 1;
+      this.sliceData(this.page_number, this.page_size);
+    }
+  }
+
+  changePreviusPage(){
+    if(this.page_number !== 0) {
+      this.page_number -= 1;
+      this.sliceData(this.page_number, this.page_size);
+    }
+  }
+
+  goToLastPage() {
+    this.page_number = this.last_page_number - 1;
+    this.sliceData(this.page_number, this.page_size);
+  }
+
+  goToFirstPage() {
+    this.page_number = 0;
+    this.sliceData(this.page_number, this.page_size);
   }
 
 }

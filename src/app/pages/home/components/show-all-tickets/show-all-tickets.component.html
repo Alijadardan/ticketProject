@@ -1,6 +1,14 @@
 <div class="ticket">
-  <div class="ticket-title">See All Tickets</div>
-  <mat-card *ngFor="let ticket of tickets | async;" class="ticket-item">
+  <div class="ticket-title d-flex justify-between">
+    <span>See All Tickets</span>
+    <div class="pagination">
+      <button [disabled]="this.page_number == 0" class="pagination-btn" (click)="goToFirstPage()" mat-raised-button color="primary"> << </button>
+      <button [disabled]="this.page_number == 0" class="pagination-btn" (click)="changePreviusPage()" mat-raised-button color="primary"> < </button>
+      <button [disabled]="this.last_page_number == this.page_number +1" class="pagination-btn" (click)="changeNextPage()" mat-raised-button color="primary"> > </button>
+      <button [disabled]="this.last_page_number == this.page_number +1" class="pagination-btn" (click)="goToLastPage()" mat-raised-button color="primary"> >> </button>
+    </div>
+  </div>
+  <mat-card *ngFor="let ticket of results" class="ticket-item">
     <mat-card-title>{{ ticket.inbound }} -> {{ ticket.outbound }}</mat-card-title>
     <mat-card-subtitle>
       Id: {{ ticket.id }}
