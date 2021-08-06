@@ -51,20 +51,20 @@ export class SearchTicketsComponent implements OnInit {
     const result = this.tickets.pipe(map((data: Ticket[]) => data.filter((item: Ticket) => {
       return Object.keys(fileterObj).every((key: string) => {
         if(key == 'from_date'){
-          return new Date(item['from_date']).getTime() >= new Date(fileterObj['from_date']).getTime();
+          return new Date(item['from_date']).getTime() == new Date(fileterObj['from_date']).getTime();
         }
         if(key == 'to_date'){
-          return new Date(item['to_date']).getTime() <= new Date(fileterObj['to_date']).getTime();
+          return new Date(item['to_date']).getTime() == new Date(fileterObj['to_date']).getTime();
         }
         if(key == 'ticket_type'){
           return item['ticket_type'].type == fileterObj['ticket_type'].type;
         }
         return item[key as keyof Ticket] == fileterObj[key];
-        }); 
+        });
       })
     ));
     return result;
-    
+
   }
 
 }
